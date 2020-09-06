@@ -15,7 +15,7 @@ app.get('/posts', (_, res) => {
   res.send(posts);
 });
 
-app.post('/posts', async (req, res) => {
+app.post('/posts/create', async (req, res) => {
   const id = randomBytes(4).toString('hex');
   posts[id] = {
     id,
