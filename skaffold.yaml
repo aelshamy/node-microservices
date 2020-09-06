@@ -1,0 +1,48 @@
+apiVersion: skaffold/v2beta7
+kind: Config
+metadata:
+  name: blog
+build:
+  local:
+    push: false
+  artifacts:
+    - image: ajmoro/client
+      context: client
+      sync:
+        manual:
+          - src: 'src/**/*.js'
+            dest: .
+    - image: ajmoro/comments
+      context: comments
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+    - image: ajmoro/event-bus
+      context: event-bus
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+    - image: ajmoro/moderation
+      context: moderation
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+    - image: ajmoro/posts
+      context: posts
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+    - image: ajmoro/query
+      context: query
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+deploy:
+  kubectl:
+    manifests:
+      - ./infra/k8s/*
