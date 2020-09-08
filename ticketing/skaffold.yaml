@@ -1,0 +1,24 @@
+apiVersion: skaffold/v2beta7
+kind: Config
+metadata:
+  name: ticketing
+build:
+  local:
+    push: false
+  artifacts:
+    - image: ajmoro/auth
+      context: auth
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+
+deploy:
+  kubectl:
+    manifests:
+      - infra/k8s/*
+
+      # googleCloudBuild:
+      #   projectId: ticketing-dev-288802
+      # artifacts:
+      #   - image: us.gcr.io/ticketing-dev-288802/auth
