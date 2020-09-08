@@ -1,29 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: auth-mongo-deployment
+  name: auth-db-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: auth-mongo
+      app: auth-db
   template:
     metadata:
       labels:
-        app: auth-mongo
+        app: auth-db
     spec:
       containers:
-        - name: auth-mongo
+        - name: auth-db
           image: mongo
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: auth-mongo-service
+  name: auth-db-service
 spec:
   type: ClusterIP
   selector:
-    app: auth-mongo
+    app: auth-db
   ports:
     - name: db
       protocol: TCP
