@@ -1,5 +1,5 @@
+import { userExists } from '@ajmoro/common';
 import express from 'express';
-import { userExists } from '../middlewares/user-exists';
 
 const router = express.Router();
 

@@ -4,10 +4,6 @@ import cookieSession from 'cookie-session';
 import express from 'express';
 import 'express-async-errors';
 import morganBody from 'morgan-body';
-import { currentUserRouter } from './routes/current-user';
-import { signInRouter } from './routes/signin';
-import { signOutRouter } from './routes/signout';
-import { signUpRouter } from './routes/signup';
 
 const app = express();
 //because we are behind nginx proxy
@@ -25,10 +21,6 @@ app.use(
   })
 );
 
-app.use(currentUserRouter);
-app.use(signInRouter);
-app.use(signOutRouter);
-app.use(signUpRouter);
 app.all('*', async () => {
   throw new NotFoundError();
 });

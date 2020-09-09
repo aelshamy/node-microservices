@@ -12,6 +12,12 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+    - image: ajmoro/auth
+      context: tickets
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
     - image: ajmoro/client
       context: client
       sync:
