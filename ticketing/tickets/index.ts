@@ -6,7 +6,7 @@ const start = async () => {
     throw new Error('JWT must be defined');
   }
   try {
-    await mongoose.connect('mongodb://tickets-db-service:27017/auth', {
+    await mongoose.connect('mongodb://tickets-db-service:27017/tickets', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
