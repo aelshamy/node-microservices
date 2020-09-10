@@ -23,7 +23,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app: auth-db
+    app: tickets-db
   ports:
     - name: db
       protocol: TCP

@@ -1,7 +1,6 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -18,5 +17,9 @@
     "@types/node": "^14.6.4",
     "@types/react": "^16.9.49",
     "typescript": "^4.0.2"
+  },
+  "author": "Amr Elshamy",
+  "repository": {
+    "url": "https://github.com/aelshamy/node-microservices/tree/master/ticketing"
   }
 }
