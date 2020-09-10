@@ -17,6 +17,7 @@ app.use(json());
 // app.use(morgan('dev'));
 morganBody(app, {
   filterParameters: ['password'],
+  skip: (req: Request, res: Response) => process.env.NODE_ENV === 'test',
 });
 app.use(
   cookieSession({
