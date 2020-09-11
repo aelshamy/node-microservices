@@ -7,8 +7,10 @@ import {
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
 import mongoose from 'mongoose';
+import { OrderCreatedPublisher } from '../events/publishers/order-created-publisher';
 import { Order, OrderStatus } from '../models/order';
 import { Ticket } from '../models/ticket';
+import { natsWrapper } from '../nats-wrapper';
 
 const createOrderRouter = express.Router();
 
@@ -49,12 +51,16 @@ createOrderRouter.post(
       ticket,
     });
     await order.save();
-    // await new TicketCreatedPublisher(natsWrapper.client).publish({
-    //   id: order.id,
-    //   title: order.title,
-    //   price: order.price,
-    //   userId: order.userId,
-    // });
+    await new OrderCreatedPublisher(natsWrapper.client).publish({
+      id: order.id,
+      status: order.status,
+      userId: order.userId,
+      expiresAt: order.expiresAt.toString(),
+      ticket: {
+        id: ticket.id,
+        price: ticket.price,
+      },
+    });
     res.status(201).send(order);
   }
 );

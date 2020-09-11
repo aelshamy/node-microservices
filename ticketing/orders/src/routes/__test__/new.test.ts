@@ -2,8 +2,9 @@ import mongoose from 'mongoose';
 import request from 'supertest';
 import { app } from '../../app';
 import { Order, OrderStatus } from '../../models/order';
-import { Ticket } from '../../models/ticket';
+import { natsWrapper } from '../../nats-wrapper';
 import { AuthHelper } from '../../test/auth-helper';
+import { createTicket } from '../../test/util';
 
 it('has a route handler listening to /api/orders for post requests', async () => {
   const response = await request(app).post('/api/orders').send({});
@@ -32,11 +33,7 @@ it('returns an error if the ticket does not exists', async () => {
     .expect(404);
 });
 it('returns an error if the ticket is already reserved', async () => {
-  const ticket = Ticket.build({
-    title: 'concert',
-    price: 20,
-  });
-  await ticket.save();
+  const ticket = await createTicket();
 
   const order = Order.build({
     ticket,
@@ -55,24 +52,13 @@ it('returns an error if the ticket is already reserved', async () => {
 });
 
 it('reserves a ticket', async () => {
-  const ticket = Ticket.build({
-    title: 'concert',
-    price: 20,
-  });
-  await ticket.save();
+  const ticket = await createTicket();
 
   await request(app)
     .post('/api/orders')
     .set('Cookie', AuthHelper.getCookie())
     .send({ ticketId: ticket.id })
     .expect(201);
-});
 
-// it('publish an event ', async () => {
-//   // await request(app)
-//   //   .post('/api/orders')
-//   //   .set('Cookie', AuthHelper.getCookie())
-//   //   .send({ title: 'a title', price: 10 })
-//   //   .expect(201);
-//   // expect(natsWrapper.client.publish).toHaveBeenCalled();
-// });
+  expect(natsWrapper.client.publish).toHaveBeenCalled();
+});

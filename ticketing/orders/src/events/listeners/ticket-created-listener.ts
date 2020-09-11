@@ -1,18 +1,20 @@
 import { BaseListener, Subjects, TicketCreatedEvent } from '@ajmoro/common';
 import { Message } from 'node-nats-streaming';
+import { Ticket } from '../../models/ticket';
+import { queueGroupName } from '../queue-group-name';
 
 export class TicketCreatedListener extends BaseListener<TicketCreatedEvent> {
   readonly subject: Subjects.TicketCreated = Subjects.TicketCreated;
-  queueGroupName = 'payments-service';
+  queueGroupName = queueGroupName;
 
-  onMessage(data: TicketCreatedEvent['data'], message: Message): void {
-    console.log('Event data!', data);
+  async onMessage(
+    data: TicketCreatedEvent['data'],
+    message: Message
+  ): Promise<void> {
+    const { title, price, id } = data;
 
-    console.log(data.id);
-    console.log(data.title);
-    console.log(data.price);
-    console.log(data.userId);
-
+    const ticket = Ticket.build({ id, title, price });
+    await ticket.save();
     message.ack();
   }
 }

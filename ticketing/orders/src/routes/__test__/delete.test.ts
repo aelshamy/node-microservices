@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import request from 'supertest';
 import { app } from '../../app';
 import { Order } from '../../models/order';
+import { natsWrapper } from '../../nats-wrapper';
 import { AuthHelper } from '../../test/auth-helper';
 import { createOrder, createTicket } from '../../test/util';
 
@@ -57,13 +58,6 @@ it('cancels the order', async () => {
   expect(fetchedOrder.id).toEqual(order.id);
   expect(fetchedOrder.status).toEqual(OrderStatus.Cancelled);
   expect(updatedOrder!.status).toEqual(OrderStatus.Cancelled);
-});
 
-// it('publish an event ', async () => {
-//   // await request(app)
-//   //   .post('/api/orders')
-//   //   .set('Cookie', AuthHelper.getCookie())
-//   //   .send({ title: 'a title', price: 10 })
-//   //   .expect(201);
-//   // expect(natsWrapper.client.publish).toHaveBeenCalled();
-// });
+  expect(natsWrapper.client.publish).toHaveBeenCalled();
+});
