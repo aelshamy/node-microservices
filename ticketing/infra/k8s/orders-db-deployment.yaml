@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orders-db-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: orders-db
+  template:
+    metadata:
+      labels:
+        app: orders-db
+    spec:
+      containers:
+        - name: orders-db
+          image: mongo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: orders-db-service
+spec:
+  type: ClusterIP
+  selector:
+    app: orders-db
+  ports:
+    - name: db
+      protocol: TCP
+      port: 27017
+      targetPort: 27017

@@ -18,6 +18,12 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+    - image: ajmoro/orders
+      context: orders
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
     - image: ajmoro/client
       context: client
       sync:

@@ -1,7 +1,7 @@
 {
-  "name": "tickets",
+  "name": "orders",
   "version": "1.0.0",
-  "description": "Handle tickets microservice",
+  "description": "Handle orders microservice",
   "main": "index.js",
   "repository": {
     "url": "https://github.com/aelshamy/node-microservices/tree/master/ticketing"
