@@ -11,7 +11,7 @@ it('has a route handler listening to /api/orders for post requests', async () =>
   expect(response.status).not.toEqual(404);
 });
 it('can only be accessed if user is signed in', async () => {
-  const ticketId = mongoose.Types.ObjectId();
+  const ticketId = new mongoose.Types.ObjectId().toHexString();
   await request(app).post('/api/orders').send({ ticketId }).expect(401);
 });
 
@@ -24,7 +24,7 @@ it('returns an error if invalid ticket id provided', async () => {
 });
 
 it('returns an error if the ticket does not exists', async () => {
-  const ticketId = mongoose.Types.ObjectId();
+  const ticketId = new mongoose.Types.ObjectId().toHexString();
 
   await request(app)
     .post('/api/orders')

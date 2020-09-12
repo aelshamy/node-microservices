@@ -5,7 +5,7 @@ import { AuthHelper } from '../../test/auth-helper';
 import { createOrder, createTicket } from '../../test/util';
 
 it('can only be accessed if user is signed in', async () => {
-  const orderId = mongoose.Types.ObjectId();
+  const orderId = new mongoose.Types.ObjectId().toHexString();
   await request(app).get(`/api/orders/${orderId}`).send().expect(401);
 });
 
@@ -18,7 +18,7 @@ it('returns an error if invalid order id provided', async () => {
 });
 
 it('returns a 404 if order is not found', async () => {
-  const orderId = new mongoose.Types.ObjectId();
+  const orderId = new mongoose.Types.ObjectId().toHexString();
   await request(app)
     .get(`/api/orders/${orderId}`)
     .set('Cookie', AuthHelper.getCookie())

@@ -1,7 +1,7 @@
 import { BaseListener, Subjects, TicketUpdatedEvent } from '@ajmoro/common';
 import { Message } from 'node-nats-streaming';
 import { Ticket } from '../../models/ticket';
-import { queueGroupName } from '../queue-group-name';
+import { queueGroupName } from './queue-group-name';
 
 export class TicketUpdatedListener extends BaseListener<TicketUpdatedEvent> {
   readonly subject: Subjects.TicketUpdated = Subjects.TicketUpdated;

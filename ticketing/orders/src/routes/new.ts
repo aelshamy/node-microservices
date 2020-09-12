@@ -56,6 +56,7 @@ createOrderRouter.post(
       status: order.status,
       userId: order.userId,
       expiresAt: order.expiresAt.toString(),
+      version: order.version,
       ticket: {
         id: ticket.id,
         price: ticket.price,
