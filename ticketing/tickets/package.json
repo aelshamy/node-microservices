@@ -21,7 +21,7 @@
   "author": "Amr Elshamy",
   "license": "ISC",
   "dependencies": {
-    "@ajmoro/common": "^1.0.8",
+    "@ajmoro/common": "^1.0.12",
     "@types/cookie-session": "^2.0.41",
     "@types/express": "^4.17.8",
     "@types/jsonwebtoken": "^8.5.0",
@@ -31,7 +31,7 @@
     "express-async-errors": "^3.1.1",
     "express-validator": "^6.6.1",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.10.3",
+    "mongoose": "^5.10.5",
     "mongoose-update-if-current": "^1.4.0",
     "morgan-body": "^2.5.1",
     "node-nats-streaming": "^0.3.2",
@@ -42,7 +42,7 @@
     "@types/jest": "^26.0.13",
     "@types/supertest": "^2.0.10",
     "jest": "^26.4.2",
-    "mongodb-memory-server": "^6.7.2",
+    "mongodb-memory-server": "^6.7.4",
     "supertest": "^4.0.2",
     "ts-jest": "^26.3.0"
   }

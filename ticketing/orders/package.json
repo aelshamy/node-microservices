@@ -21,7 +21,7 @@
   "author": "Amr Elshamy",
   "license": "ISC",
   "dependencies": {
-    "@ajmoro/common": "^1.0.10",
+    "@ajmoro/common": "^1.0.12",
     "@types/cookie-session": "^2.0.41",
     "@types/express": "^4.17.8",
     "@types/jsonwebtoken": "^8.5.0",
@@ -32,6 +32,7 @@
     "express-validator": "^6.6.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.5",
+    "mongoose-update-if-current": "^1.4.0",
     "morgan-body": "^2.5.1",
     "node-nats-streaming": "^0.3.2",
     "ts-node-dev": "^1.0.0-pre.62",
