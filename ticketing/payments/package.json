@@ -1,7 +1,7 @@
 {
-  "name": "tickets",
+  "name": "payments",
   "version": "1.0.0",
-  "description": "Handle tickets microservice",
+  "description": "Handle payments microservice",
   "main": "index.js",
   "repository": {
     "url": "https://github.com/aelshamy/node-microservices/tree/master/ticketing"

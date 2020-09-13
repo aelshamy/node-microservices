@@ -24,6 +24,12 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+    - image: ajmoro/expiration
+      context: expiration
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
     - image: ajmoro/client
       context: client
       sync:
