@@ -5,9 +5,9 @@ export class AuthHelper {
   static email = 'test@test.com';
   static password = 'password';
 
-  static getCookie(): string[] {
+  static getCookie(id?: string): string[] {
     const payload = {
-      id: new mongoose.Types.ObjectId().toHexString(),
+      id: id || new mongoose.Types.ObjectId().toHexString(),
       email: this.email,
     };
 

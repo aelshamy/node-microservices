@@ -4,6 +4,7 @@ import cookieSession from 'cookie-session';
 import express, { Response } from 'express';
 import 'express-async-errors';
 import morganBody from 'morgan-body';
+import { createChargeRoute } from './routes/new';
 
 const app = express();
 //because we are behind nginx proxy
@@ -23,6 +24,7 @@ app.use(
 );
 
 app.use(userExists);
+app.use(createChargeRoute);
 
 app.all('*', async () => {
   throw new NotFoundError();
