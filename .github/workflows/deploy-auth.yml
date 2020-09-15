@@ -1,0 +1,22 @@
+name: deploy-auth
+
+on:
+  workflow_dispatch:
+    # Inputs the workflow accepts.
+    push:
+      branches:
+        - master
+      paths:
+        - 'ticketing/auth/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - run: cd ticketing/auth && docker build -t ajmoro/auth .
+    - run: docker login -u $DOCKER_USERNAME -P $DOCKER_PASSWORD
+      env:
+        DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
+        DOCKER_PASSWORD: ${{secrets.DOCKER_USERNAME}}  
+    - run: docker push ajmoro/auth 
