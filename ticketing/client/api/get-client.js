@@ -3,8 +3,7 @@ import axios from 'axios';
 const getClient = ({ req }) => {
   if (typeof Window === 'undefined') {
     return axios.create({
-      baseURL:
-        'http://ingress-nginx-controller.ingress-nginx.svc.cluster.local',
+      baseURL: 'http://www.ticketingwithnode.xyz',
       headers: req.headers,
     });
   }
