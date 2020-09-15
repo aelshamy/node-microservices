@@ -47,6 +47,7 @@ deploy:
   kubectl:
     manifests:
       - infra/k8s/*
+      - infra/k8s-dev/*
 
       # googleCloudBuild:
       #   projectId: ticketing-dev-288802
